@@ -1,0 +1,11 @@
+#!/usr/bin/sh
+#
+# An example hook script to prepare a packed repository for use over
+# dumb transports.
+#
+# To enable this hook, rename this file to "post-update".
+
+#exec git update-server-info
+git push
+ssh docent@webutils-org.netrunner.lasyk.info "./update_page.sh"
+ssh docent@webutils-org2.netrunner.lasyk.info "./update_page.sh"
