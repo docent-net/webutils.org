@@ -17,16 +17,16 @@ spec:
       imagePullSecrets:
       - name: prv-registry-auth
       containers:
-        - name: {{ .Values.name }}
-          image: {{ .Values.image }}
-          imagePullPolicy: IfNotPresent
-          ports:
-          - containerPort: {{ .Values.port }}
+      - name: {{ .Values.name }}
+        image: {{ .Values.image }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: {{ .Values.port }}
       {{- with .Values.tolerations }}
       tolerations:
       {{- . | toYaml | nindent 6 }}
       {{- end }}
       {{- with .Values.affinities }}
       affinity:
-        {{- toYaml . | nindent 6 }}
-    {{- end }}
+      {{- toYaml . | nindent 6 }}
+      {{- end }}
