@@ -10,7 +10,7 @@ tolerations:
   effect: "NoSchedule"
 
 affinity:
-- podAntiAffinity:
+  podAntiAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
           matchExpressions:
