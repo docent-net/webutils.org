@@ -24,9 +24,9 @@ spec:
         - containerPort: {{ .Values.port }}
       {{- with .Values.tolerations }}
       tolerations:
-      {{- . | toYaml | nindent 6 }}
+      {{ toYaml . | indent 6 }}
       {{- end }}
-      affinity:
       {{- with .Values.affinity }}
-      {{- . | toYaml | nindent 6 }}
+      affinity:
+      {{ toYaml . | indent 6 }}
       {{- end }}
