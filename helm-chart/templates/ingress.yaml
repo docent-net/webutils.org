@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ .Values.name }}-ingress
+  annotations:
+    kubernetes.io/ingress.class: traefik-public
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`{{ .Values.url }}`)
+      kind: Rule
+      services:
+        - name: {{ .Values.name }}
+          port: 80

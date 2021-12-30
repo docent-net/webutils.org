@@ -1,0 +1,21 @@
+name: webutils-org
+port: 80
+image: cnt-registry.netrunner.lasyk.info/webutils.org:1.0.0
+url: webutils.org
+replicas: 2
+tolerations:
+- key: "netrunner/apps"
+  operator: "Equal"
+  value: "true"
+  effect: "NoSchedule"
+
+affinities:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: "app.kubernetes.io/name"
+              operator: In
+              values:
+              - webutils-org
+        topologyKey: "kubernetes.io/hostname"

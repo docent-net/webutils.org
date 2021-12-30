@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      imagePullSecrets:
+      - name: prv-registry-auth
+      containers:
+        - name: {{ .Values.name }}
+          image: {{ .Values.image }}
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: {{ .Values.port }}
+      {{- with .Values.tolerations }}
+      tolerations:
+      {{- . | toYaml | nindent 6 }}
+      {{- end }}
+      {{- with .Values.affinities }}
+      affinity:
+        {{- toYaml . | nindent 6 }}
+    {{- end }}
