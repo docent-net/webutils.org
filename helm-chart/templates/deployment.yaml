@@ -22,11 +22,11 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ .Values.port }}
-      {{- with .Values.affinity }}
-      affinity:
-      {{ toYaml . | indent 8 }}
-      {{- end }}
       {{- with .Values.tolerations }}
       tolerations:
-      {{ toYaml . | indent 8 }}
+      {{- . | toYaml | nindent 6 }}
+      {{- end }}
+      {{- with .Values.affinities }}
+      affinity:
+      {{- toYaml . | nindent 6 }}
       {{- end }}
