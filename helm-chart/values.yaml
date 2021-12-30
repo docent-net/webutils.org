@@ -9,14 +9,13 @@ tolerations:
   value: "true"
   effect: "NoSchedule"
 
-affinities:
-  affinity:
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-              - key: "app.kubernetes.io/name"
-                operator: In
-                values:
-                - webutils-org
-          topologyKey: "kubernetes.io/hostname"
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+            - key: "app.kubernetes.io/name"
+              operator: In
+              values:
+              - webutils-org
+        topologyKey: "kubernetes.io/hostname"

@@ -26,13 +26,7 @@ spec:
       tolerations:
       {{- . | toYaml | nindent 6 }}
       {{- end }}
+      {{- with .Values.affinity }}
       affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: "app.kubernetes.io/name"
-                    operator: In
-                    values:
-                    - webutils-org
-              topologyKey: "kubernetes.io/hostname"
+      {{- . | toYaml | nindent 6 }}
+      {{- end }}
