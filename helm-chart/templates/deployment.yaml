@@ -28,5 +28,5 @@ spec:
       {{- end }}
       {{- with .Values.affinity }}
       affinity:
-      {{- toYaml . | nindent 6 }}
+      {{- . | toYaml | nindent 6 }}
       {{- end }}
