@@ -26,7 +26,7 @@ spec:
       tolerations:
       {{- . | toYaml | nindent 6 }}
       {{- end }}
-      {{- if .Values.affinity }}
+      {{- with .Values.affinity }}
       affinity:
-      {{ .Values.affinity | toYaml | nindent 8 }}
+      {- . | toYaml | nindent 8 }}
       {{- end }}
