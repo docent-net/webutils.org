@@ -24,10 +24,21 @@ spec:
       # stack as soon as the ReplicaSet are completely ready/available.
       # Rollouts can be resumed using: `kubectl argo rollouts promote ROLLOUT`
       autoPromotionEnabled: false
+      antiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - webutils-org
+          topologyKey: "kubernetes.io/hostname"
   template:
     metadata:
       labels:
         app: {{ .Values.name }}
+        release: {{ .Release }}
     spec:
       imagePullSecrets:
       - name: prv-registry-auth
