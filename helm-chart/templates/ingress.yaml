@@ -13,5 +13,3 @@ spec:
       services:
         - name: {{ .Values.name }}-bluegreen-active
           port: 80
-        - name: {{ .Values.name }}-bluegreen-preview
-          port: 80
