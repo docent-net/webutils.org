@@ -11,5 +11,7 @@ spec:
     - match: Host(`{{ .Values.url }}`)
       kind: Rule
       services:
-        - name: {{ .Values.name }}
+        - name: {{ .Values.name }}-bluegreen-active
+          port: 80
+        - name: {{ .Values.name }}-bluegreen-preview
           port: 80
