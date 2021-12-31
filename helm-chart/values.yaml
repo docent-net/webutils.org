@@ -11,7 +11,9 @@ tolerations:
 
 affinity:
   podAntiAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
+    # https://argoproj.github.io/argo-rollouts/features/anti-affinity/anti-affinity/
+    #requiredDuringSchedulingIgnoredDuringExecution:
+    preferredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
           matchExpressions:
             - key: app
