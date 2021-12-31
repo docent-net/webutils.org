@@ -1,5 +1,5 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Rollout
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: {{ .Values.name }}
   labels:
@@ -9,29 +9,10 @@ spec:
   selector:
     matchLabels:
       app: {{ .Values.name }}
-  strategy:
-    blueGreen:
-      # activeService specifies the service to update with the new template hash at time of promotion.
-      # This field is mandatory for the blueGreen update strategy.
-      activeService: {{ .Values.name }}-bluegreen-active
-      # previewService specifies the service to update with the new template hash before promotion.
-      # This allows the preview stack to be reachable without serving production traffic.
-      # This field is optional.
-      previewService: {{ .Values.name }}-bluegreen-preview
-      previewReplicaCount: 1
-      # autoPromotionEnabled disables automated promotion of the new stack by pausing the rollout
-      # immediately before the promotion. If omitted, the default behavior is to promote the new
-      # stack as soon as the ReplicaSet are completely ready/available.
-      # Rollouts can be resumed using: `kubectl argo rollouts promote ROLLOUT`
-      autoPromotionEnabled: false
-      antiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          weight: 1
   template:
     metadata:
       labels:
         app: {{ .Values.name }}
-        release: {{ .Release }}
     spec:
       imagePullSecrets:
       - name: prv-registry-auth
