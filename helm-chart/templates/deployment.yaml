@@ -27,13 +27,6 @@ spec:
       antiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
           weight: 1
-          labelSelector:
-            matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - webutils-org
-          topologyKey: "kubernetes.io/hostname"
   template:
     metadata:
       labels:
