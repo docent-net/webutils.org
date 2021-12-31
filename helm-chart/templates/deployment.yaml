@@ -25,7 +25,7 @@ spec:
       # Rollouts can be resumed using: `kubectl argo rollouts promote ROLLOUT`
       autoPromotionEnabled: false
       antiAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
+        preferredDuringSchedulingIgnoredDuringExecution:
         - weight: 1
           labelSelector:
             matchExpressions:
