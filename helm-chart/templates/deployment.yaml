@@ -25,16 +25,15 @@ spec:
       # Rollouts can be resumed using: `kubectl argo rollouts promote ROLLOUT`
       autoPromotionEnabled: false
       antiAffinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            labelSelector:
-              matchExpressions:
-                - key: app
-                  operator: In
-                  values:
-                  - webutils-org
-            topologyKey: "kubernetes.io/hostname"
+        preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 1
+          labelSelector:
+            matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - webutils-org
+          topologyKey: "kubernetes.io/hostname"
   template:
     metadata:
       labels:
