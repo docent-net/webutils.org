@@ -1,6 +1,6 @@
 name: webutils-org
 port: 80
-image: cnt-registry.netrunner.lasyk.info/webutils.org:1.0.0
+image: container-registry.netrunner.lasyk.info/netrunner/webutils.org:1.0.0
 url: webutils.org
 replicas: 1
 tolerations:
